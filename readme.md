@@ -2,11 +2,21 @@
 
 #### Requires python 3.9.4 or newer
 
-### Edit config.JSON file, filling the value on right side or leave empty string. i.e:
+### Edit config.JSON file, filling the value on right side or leave empty string
 
 ## Remember not to remove or add anything beyond quotes on the right side!
 
 ### In unit section you can leave empty strings. Then the unit will not receive the specifed item
+
+### After filling json file, open folder with this script, shift+rmb and select open Powershell here. and type:
+
+```
+py generator.py
+```
+
+### pack faction folder into PBO and throw it into @wtf/addons folder. Then add @wtf as a local mod in A3 launcher and run the game.
+
+### JSON file explained:
 
 ```
 {
