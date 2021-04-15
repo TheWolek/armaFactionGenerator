@@ -130,6 +130,41 @@ def generateSoldier(FacSide, FacNameClass, base, uniform, goggles, nvg, vest, he
     return config
 
 
+def generateAT(FacSide, FacNameClass, base, uniform, goggles, nvg, vest, headgear, backpack, weapon, launcher):
+    mags = generateMags(weapon["magazineCount"], weapon["magazine"])
+    ATmags = generateMags(
+        launcher["magazineCount"], launcher["magazine"])
+    weaponC = weapon["class"]
+    launcherC = launcher["class"]
+
+    config = """
+        class {FacNameClass}_f_at : {base} 
+        {{
+            _generalMacro = "{FacNameClass}_f_mg"; 
+            scope = 2;
+            scopecurator = 2;
+            side = {side};
+            displayName = "AT Operator";
+            faction = {FacNameClass}_faction; 
+            vehicleClass = "{FacNameClass}_Men";
+            icon = "iconManAT";
+            nakedUniform = "U_BasicBody";  
+            uniformClass = "{uniform}";
+            backpack = "{backpack}";
+            linkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}}; 
+            respawnLinkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}};
+            weapons[] = {{"{weapon}", "{launcher}","Binocular"}};
+            respawnweapons[] = {{"{weapon}", "{launcher}","Binocular"}};
+            magazines[] = {{{mags},{ATmags},"HandGrenade","HandGrenade"}};
+            Respawnmagazines[] = {{{mags}, {ATmags},"HandGrenade","HandGrenade"}};
+        }};
+    """
+    config = config.format(FacNameClass=FacNameClass, base=base, side=FacSide,
+                           uniform=uniform, backpack=backpack, vest=vest, headgear=headgear, nvg=nvg, weapon=weaponC, mags=mags, launcher=launcherC, ATmags=ATmags)
+
+    return config
+
+
 def generateSoldiers(
     FacSide,
     FacNameClass,
@@ -161,11 +196,6 @@ def generateSoldiers(
     for i in range(MG_weaponAmmoCount):
         MGmags = MGmags + '"' + MG_weaponAmmo + '",'
     MGmags = MGmags + '"' + MG_weaponAmmo + '"'
-
-    ATmags = ""
-    for i in range(launcher_AmmoCount):
-        ATmags = ATmags + '"' + launcher_Ammo + '",'
-    ATmags = ATmags + '"' + launcher_Ammo + '"'
 
     MRKmags = ""
     for i in range(MRK_weaponAmmoCount):
@@ -201,31 +231,6 @@ def generateSoldiers(
     """
     MG = MG.format(FacNameClass=FacNameClass, base=base, side=FacSide,
                    uniform=uniform, backpack=backpack, vest=vest, headgear=headgear, nvg=nvg, MG_weapon=MG_weapon, MGmags=MGmags)
-
-    AT = """
-        class {FacNameClass}_f_at : {base} 
-        {{
-            _generalMacro = "{FacNameClass}_f_mg"; 
-            scope = 2;
-            scopecurator = 2;
-            side = {side};
-            displayName = "AT Operator";
-            faction = {FacNameClass}_faction; 
-            vehicleClass = "{FacNameClass}_Men";
-            icon = "iconManAT";
-            nakedUniform = "U_BasicBody";  
-            uniformClass = "{uniform}";
-            backpack = "{backpack}";
-            linkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}}; 
-            respawnLinkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}};
-            weapons[] = {{"{weapon}", "{launcher}","Binocular"}};
-            respawnweapons[] = {{"{weapon}", "{launcher}","Binocular"}};
-            magazines[] = {{{mags},{ATmags},"HandGrenade","HandGrenade"}};
-            Respawnmagazines[] = {{{mags}, {ATmags},"HandGrenade","HandGrenade"}};
-        }};
-    """
-    AT = AT.format(FacNameClass=FacNameClass, base=base, side=FacSide,
-                   uniform=uniform, backpack=at_backpack, vest=vest, headgear=headgear, nvg=nvg, weapon=weapon, mags=mags, launcher=launcher, ATmags=ATmags)
 
     MRK = """
         class {FacNameClass}_f_mark : {base} 
@@ -477,8 +482,13 @@ def main():
                                   unit["uniform"], unit["goggles"], unit["nvg"],
                                   unit["soldier"]["vest"], unit["soldier"]["headgear"], unit["soldier"]["backpack"], unit["soldier"]["weapon"])
 
-    print(CFG_SL)
-    print(CFG_soldier)
+    CFG_AT = generateAT(faction["side"], faction["variable"], base,
+                        unit["uniform"], unit["goggles"], unit["nvg"],
+                        unit["AT"]["vest"], unit["AT"]["headgear"], unit["AT"]["backpack"], unit["AT"]["weapon"], unit["AT"]["launcher"])
+
+    # print(CFG_SL)
+    # print(CFG_soldier)
+    print(CFG_AT)
 
     # CFG_soldiers = generateSoldiers(faction["side"], faction["variable"],
     #                                 unit["uniform"], unit["vest"], unit["backpack"], unit["med_backpack"], unit["at_backpack"], unit["weapon"]["class"], unit["weapon"]["magazine"], unit["weapon"]["magazineCount"], unit["SL_weapon"]["class"], unit["SL_weapon"]["GL_magazine"], unit["SL_weapon"]["GL_magazineCount"], unit["MG_weapon"]["class"], unit["MG_weapon"]["magazine"], unit["MG_weapon"]["magazineCount"], unit["nvg"], unit["goggles"], unit["headgear"], unit["MRK_weapon"]["class"], unit["MRK_weapon"]["magazine"], unit["MRK_weapon"]["magazineCount"], unit["launcher"]["class"], unit["launcher"]["magazine"], unit["launcher"]["magazineCount"])
