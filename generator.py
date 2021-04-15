@@ -12,7 +12,7 @@ def generateFaction(FacNameClass, FacName, Author, FacSide):
                 "{FacNameClass}_f_soldier",
                 "{FacNameClass}_f_mg",
                 "{FacNameClass}_f_at",
-                "{FacNameClass}_f_mark",
+                "{FacNameClass}_f_mrk",
                 "{FacNameClass}_f_medic"
             }};
             weapons[]={{}};
@@ -71,7 +71,7 @@ def generateMags(Amount, Class):
 
 
 def generateSoldierCFG(type, Fac, base, unit):
-    classNames = {"SL": "_f_sqadlleader", "soldier": "_f_soldier",
+    classNames = {"SL": "_f_squadleader", "soldier": "_f_soldier",
                   "AT": "_f_at", "MG": "_f_mg", "MRK": "_f_mrk", "MED": "_f_medic"}
     icons = {"SL": "iconManLeader", "soldier": "iconMan", "AT": "iconManAT",
              "MG": "iconManMG", "MRK": "iconManRecon", "MED": "iconManMedic"}
@@ -268,7 +268,7 @@ def generateUnits(FacNameClass, FacSide, riflemanAmount, MGAmount, ATAmount, MRK
                         class Unit{counter}
                         {{
                             side = {side};
-                            vehicle = "{FacNameClass}_f_mark";
+                            vehicle = "{FacNameClass}_f_mrk";
                             rank = "PRIVATE";
                             position[] = {{ {pos1}, {pos2}, 0 }};
                         }};
