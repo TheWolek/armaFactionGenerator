@@ -35,7 +35,7 @@
         "AT": {
             "vest": "V_PlateCarrierL_CTRG",
             "headgear": "H_Cap_headphones",
-            "backpack": "at_bag",
+            "backpack": "B_Carryall_mcamo",
             "weapon": {
                 "class": "arifle_Katiba_F",
                 "magazine": "30Rnd_65x39_caseless_green",
@@ -70,7 +70,7 @@
         "MED": {
             "vest": "V_PlateCarrierL_CTRG",
             "headgear": "H_Cap_headphones",
-            "backpack": "med_bag",
+            "backpack": "B_AssaultPack_mcamo_AT",
             "weapon": {
                 "class": "arifle_Katiba_F",
                 "magazine": "30Rnd_65x39_caseless_green",
