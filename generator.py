@@ -98,6 +98,38 @@ def generateSL(FacSide, FacNameClass, base, uniform, goggles, nvg, vest, headgea
     return config
 
 
+def generateSoldier(FacSide, FacNameClass, base, uniform, goggles, nvg, vest, headgear, backpack, weapon):
+    mags = generateMags(weapon["magazineCount"], weapon["magazine"])
+    weaponC = weapon["class"]
+
+    config = """
+        class {FacNameClass}_f_soldier : {base} 
+        {{
+            _generalMacro = "{FacNameClass}_f_soldier"; 
+            scope = 2;
+            scopecurator = 2;
+            side = {side};
+            displayName = "Soldier";
+            faction = {FacNameClass}_faction; 
+            vehicleClass = "{FacNameClass}_Men";
+            icon = "iconMan";
+            nakedUniform = "U_BasicBody";  
+            uniformClass = "{uniform}";
+            backpack = "{backpack}";
+            linkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}}; 
+            respawnLinkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}};
+            weapons[] = {{"{weapon}","Binocular"}};
+            respawnweapons[] = {{"{weapon}","Binocular"}};
+            magazines[] = {{{mags},"HandGrenade","HandGrenade"}};
+            Respawnmagazines[] = {{{mags},"HandGrenade","HandGrenade"}};
+        }};
+    """
+    config = config.format(FacNameClass=FacNameClass, base=base, side=FacSide,
+                           uniform=uniform, backpack=backpack, vest=vest, headgear=headgear, nvg=nvg, weapon=weaponC, mags=mags)
+
+    return config
+
+
 def generateSoldiers(
     FacSide,
     FacNameClass,
@@ -144,31 +176,6 @@ def generateSoldiers(
     bases = ["O_Soldier_base_F", "B_Soldier_base_F",
              "I_Soldier_base_F", "C_man_1"]
     base = bases[FacSide]
-
-    Soldier = """
-        class {FacNameClass}_f_soldier : {base} 
-        {{
-            _generalMacro = "{FacNameClass}_f_soldier"; 
-            scope = 2;
-            scopecurator = 2;
-            side = {side};
-            displayName = "Soldier";
-            faction = {FacNameClass}_faction; 
-            vehicleClass = "{FacNameClass}_Men";
-            icon = "iconMan";
-            nakedUniform = "U_BasicBody";  
-            uniformClass = "{uniform}";
-            backpack = "{backpack}";
-            linkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}}; 
-            respawnLinkedItems[] = {{"{vest}", "{headgear}", "{nvg}", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio","FirstAidKit","FirstAidKit"}};
-            weapons[] = {{"{weapon}","Binocular"}};
-            respawnweapons[] = {{"{weapon}","Binocular"}};
-            magazines[] = {{{mags},"HandGrenade","HandGrenade"}};
-            Respawnmagazines[] = {{{mags},"HandGrenade","HandGrenade"}};
-        }};
-    """
-    Soldier = Soldier.format(FacNameClass=FacNameClass, base=base, side=FacSide,
-                             uniform=uniform, backpack=backpack, vest=vest, headgear=headgear, nvg=nvg, weapon=weapon, mags=mags)
 
     MG = """
         class {FacNameClass}_f_mg : {base} 
@@ -465,7 +472,13 @@ def main():
     CFG_SL = generateSL(faction["side"], faction["variable"], base,
                         unit["uniform"], unit["goggles"], unit["nvg"],
                         unit["SL"]["vest"], unit["SL"]["headgear"], unit["SL"]["backpack"], unit["SL"]["weapon"])
+
+    CFG_soldier = generateSoldier(faction["side"], faction["variable"], base,
+                                  unit["uniform"], unit["goggles"], unit["nvg"],
+                                  unit["soldier"]["vest"], unit["soldier"]["headgear"], unit["soldier"]["backpack"], unit["soldier"]["weapon"])
+
     print(CFG_SL)
+    print(CFG_soldier)
 
     # CFG_soldiers = generateSoldiers(faction["side"], faction["variable"],
     #                                 unit["uniform"], unit["vest"], unit["backpack"], unit["med_backpack"], unit["at_backpack"], unit["weapon"]["class"], unit["weapon"]["magazine"], unit["weapon"]["magazineCount"], unit["SL_weapon"]["class"], unit["SL_weapon"]["GL_magazine"], unit["SL_weapon"]["GL_magazineCount"], unit["MG_weapon"]["class"], unit["MG_weapon"]["magazine"], unit["MG_weapon"]["magazineCount"], unit["nvg"], unit["goggles"], unit["headgear"], unit["MRK_weapon"]["class"], unit["MRK_weapon"]["magazine"], unit["MRK_weapon"]["magazineCount"], unit["launcher"]["class"], unit["launcher"]["magazine"], unit["launcher"]["magazineCount"])
