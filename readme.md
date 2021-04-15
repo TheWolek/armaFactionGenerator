@@ -14,7 +14,7 @@
 py generator.py
 ```
 
-### pack faction folder into PBO and throw it into @wtf/addons folder. Then add @wtf as a local mod in A3 launcher and run the game.
+### Script will output config.cpp file into faction folder. Pack faction folder into PBO and throw it into @wtf/addons folder. Then add @wtf as a local mod in A3 launcher and run the game.
 
 ### JSON file explained:
 
