@@ -1,0 +1,89 @@
+{
+    "faction":{
+        "name": "test",
+        "variable": "test_var",
+        "side": 1,
+        "author": "TheWolek"
+    },
+
+    "unit": {
+        "uniform": "rhs_uniform_mvd_izlom",
+        "goggles": "",
+        "nvg": "",
+        "SL": {
+            "vest": "V_PlateCarrierL_CTRG",
+            "headgear": "H_Cap_headphones",
+            "backpack": "",
+            "weapon": {
+                "class": "arifle_Katiba_F_GL",
+                "magazine": "30Rnd_65x39_caseless_green",
+                "magazineCount": 1,
+                "GL_magazine": "GL",
+                "GL_magazineCount": 1
+            }
+        },
+        "soldier": {
+            "vest": "V_PlateCarrierL_CTRG",
+            "headgear": "H_Cap_headphones",
+            "backpack": "",
+            "weapon": {
+                "class": "arifle_Katiba_F",
+                "magazine": "30Rnd_65x39_caseless_green",
+                "magazineCount": 1
+            }
+        },
+        "AT": {
+            "vest": "V_PlateCarrierL_CTRG",
+            "headgear": "H_Cap_headphones",
+            "backpack": "at_bag",
+            "weapon": {
+                "class": "arifle_Katiba_F",
+                "magazine": "30Rnd_65x39_caseless_green",
+                "magazineCount": 1
+            },
+            "launcher": {
+                "class": "launch_RPG32_F",
+                "magazine": "RPG32_F",
+                "magazineCount": 1
+            }
+        },
+        "MG": {
+            "vest": "V_PlateCarrierL_CTRG",
+            "headgear": "H_Cap_headphones",
+            "backpack": "mg_bag",
+            "weapon": {
+                "class": "MMG_01_hex_F",
+                "magazine": "150Rnd_93x64_Mag",
+                "magazineCount": 1
+            }
+        },
+        "MRK": {
+            "vest": "V_PlateCarrierL_CTRG",
+            "headgear": "H_Cap_headphones",
+            "backpack": "",
+            "weapon": {
+                "class": "srifle_GM6_ghex_F",
+                "magazine": "5Rnd_127x108_Mag",
+                "magazineCount": 1
+            }
+        },
+        "MED": {
+            "vest": "V_PlateCarrierL_CTRG",
+            "headgear": "H_Cap_headphones",
+            "backpack": "med_bag",
+            "weapon": {
+                "class": "arifle_Katiba_F",
+                "magazine": "30Rnd_65x39_caseless_green",
+                "magazineCount": 1
+            }
+        }
+    },
+
+    "group": {
+        "riflemanAmount": 2,
+        "MGAmount": 1,
+        "ATAmount": 1,
+        "MRKAmount": 1,
+        "MedAmount": 1
+    }
+}
