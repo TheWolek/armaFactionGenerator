@@ -2,9 +2,11 @@
 
 #### Requires python 3.9.4 or newer
 
-### Edit config.JSON file, filling the value on right side or leave it empty string. Do not remove anything i.e:
+### Edit config.JSON file, filling the value on right side or leave empty string. i.e:
 
 ## Remember not to remove or add anything beyond quotes on the right side!
+
+### In unit section you can leave empty strings. Then the unit will not receive the specifed item
 
 ```
 {
@@ -20,9 +22,9 @@
         "goggles": "", //class of googles, as well for each unit
         "nvg": "", //class of NVG, also for everyone
         "SL": { //SquadLeader cfg
-            "vest": "V_PlateCarrierL_CTRG", //class of vest, vest can be diffrent for every unit
+            "vest": "V_PlateCarrierL_CTRG", //class of vest, vest can be diffrent for each unit
             "headgear": "H_Cap_headphones", //class of headgear, also can be diffrent
-            "backpack": "", // class of backpack, as well it can be diffrent for everyone. You can leave empty string, then unit will not have any backpack
+            "backpack": "", // class of backpack, as well it can be diffrent for everyone
             "weapon": { //weapon section
                 "class": "arifle_Katiba_GL_F", //class of a rifle (primary weapon)
                 "magazine": "30Rnd_65x39_caseless_green", //class of primary weapon mag
@@ -88,7 +90,7 @@
         }
     },
 
-    "group": { //this is group section. Here you can specify amount and type of soldier in group. Group will be always generated with one SL.
+    "group": { //this is group section. Here you can specify amount and type of soldiers in group. Group will be always generated with one SL.
         "riflemanAmount": 2,
         "MGAmount": 1,
         "ATAmount": 1,
