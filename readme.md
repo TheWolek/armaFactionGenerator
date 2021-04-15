@@ -1,6 +1,6 @@
 # Arma Faction Generator
 
-#### Requires python 3.9.4 or newer
+#### Requires python 3.9.4 or newer and PBO Manager
 
 ### Edit config.JSON file, filling the value on right side or leave empty string
 
